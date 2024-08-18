@@ -6,12 +6,12 @@ RSpec.describe TermOptionParser do
   describe '#parse!' do
     let(:args) {["-d", "10000", "-r", "5", "-t", "12", "-c", "month"]}
 
-    it "parses options" do
+    it "parses options into profile" do
       parser.parse!(args)
-      expect(parser.options.deposit).to eq(10000)
-      expect(parser.options.rate).to eq(5)
-      expect(parser.options.term).to eq(12)
-      expect(parser.options.cycle).to eq("month")
+      expect(parser.profile.deposit).to eq(10000)
+      expect(parser.profile.rate).to eq(5)
+      expect(parser.profile.term).to eq(12)
+      expect(parser.profile.cycle).to eq(1)
     end
 
     context "with invalid deposit" do
