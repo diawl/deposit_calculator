@@ -1,7 +1,16 @@
 require_relative '../../lib/term_calculator'
+require_relative '../../lib/term_profile'
 
 RSpec.describe TermCalculator do
-  let(:calculator) { TermCalculator.new(deposit, term, rate, cycle) }
+  let(:profile) do
+    profile = TermProfile.new
+    profile.deposit = deposit
+    profile.term = term
+    profile.rate = rate
+    profile.cycle = cycle
+    profile
+  end
+  let(:calculator) { TermCalculator.new(profile) }
   
   describe '#calculate' do
     subject { calculator.calculate }
