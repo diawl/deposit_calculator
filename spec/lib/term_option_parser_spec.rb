@@ -43,5 +43,12 @@ RSpec.describe TermOptionParser do
         expect { parser.parse!(args) }.to raise_error(OptionParser::InvalidArgument)
       end
     end
+
+    context "with annual interest cycle and term less than 12 months" do
+      it "raises an InvalidArgument error" do
+        args = ["-d", "1000", "-r", "5", "-t", "11", "-c", "year"]
+        expect { parser.parse!(args) }.to raise_error(OptionParser::InvalidArgument)
+      end
+    end
   end
 end

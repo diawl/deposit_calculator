@@ -18,9 +18,16 @@ class TermOptionParser
 
   def parse!(args)
     parser.parse!(args)
+    validate
   end
 
   private
+
+  def validate
+    if options.term < 12 && options.cycle == "year"
+      raise OptionParser::InvalidArgument, "Term must be at least 12 months to use a yearly interest frequency"
+    end
+  end
 
   def define_options
     parser.banner = "Usage: deposit_calculator [options]"
